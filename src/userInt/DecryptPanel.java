@@ -1,6 +1,5 @@
 package userInt;
 
-import java.awt.GridLayout;
 import java.awt.Label;
 
 import javax.swing.*;
@@ -8,7 +7,6 @@ import javax.swing.*;
 public class DecryptPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	JButton cancel, selectFile, decrypt;
-	ButtonGroup ecrGrp;
 	Label selectlbl;
 	
 	public DecryptPanel() {
@@ -18,15 +16,13 @@ public class DecryptPanel extends JPanel{
 		selectlbl = new Label("Select file(s) to be decrypted");
 		
 		
-		setLayout(new GridLayout(3,1));
+		setLayout(null);
+		selectlbl.setBounds(25, 0, 160, 50);
 		add(selectlbl);
-		//add(dataToEncr);
-		//add(scroll, BorderLayout.EAST);
-		//setLayout(new FlowLayout());
-		ecrGrp = new ButtonGroup();
-		ecrGrp.add(cancel);
-		ecrGrp.add(selectFile);
-		ecrGrp.add(decrypt);
+
+		cancel.setBounds(25, 200, 100, 25);
+		selectFile.setBounds(160, 200, 125, 25);
+		decrypt.setBounds(325, 200, 140, 25);
 		
 		add(cancel);
 		add(selectFile);

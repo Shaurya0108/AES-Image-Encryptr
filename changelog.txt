@@ -1,0 +1,10 @@
+PLEASE ADD TO THIS WHEN YOU MAKE CHANGES
+11-2-22
+v0.1.2
+	*Tweaked file selection
+	*Created Decrypt window and added options
+10-30-22
+v0.1
+	*Created main menu
+		*Three options: Encrypt, Decrypt, View File
+	*Created Encrypt window

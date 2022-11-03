@@ -1,14 +1,24 @@
 package userInt;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.*;
-import javax.swing.filechooser.*;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class DecryptFile extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	DecryptPanel decryptPanel;
+	
+	File file;
+	String name;
+	long size;
 	
 	//JFileChooser selFileDialog;
 	
@@ -25,7 +35,6 @@ public class DecryptFile extends JFrame implements ActionListener{
 		setLocationRelativeTo(null);
 		setVisible(false);
 		
-		setLayout(new FlowLayout());
 		decryptPanel = new DecryptPanel();
 		
 		add(decryptPanel);
@@ -33,7 +42,6 @@ public class DecryptFile extends JFrame implements ActionListener{
 		decryptPanel.cancel.addActionListener(this);
 		decryptPanel.selectFile.addActionListener(this);
 		decryptPanel.decrypt.addActionListener(this);
-		//pack();
 	}
 	
 	public static void main(String[] args) {
@@ -47,17 +55,29 @@ public class DecryptFile extends JFrame implements ActionListener{
 		}
 		if(e.getSource() == decryptPanel.selectFile) {
 			JFileChooser selFileDialog = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png, jpg");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("AES", "aes"); //File type for AES files is .aes? Change if necessary.
 			selFileDialog.setFileFilter(filter);
 			selFileDialog.setBounds(0, 7, 500, 300);
-			selFileDialog.showOpenDialog(this);
-			/*int returnVal = selFileDialog.showOpenDialog(this);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				File file = selFileDialog.getSelectedFile();
-			}*/
+			switch (selFileDialog.showOpenDialog(this)) {
+				case JFileChooser.APPROVE_OPTION:
+					file = selFileDialog.getSelectedFile();
+					BufferedImage readImage;
+					try {
+						readImage = ImageIO.read(file);
+						if (readImage != null) {
+							name = file.getName();
+							size = file.length() / (1024 * 1024);
+							System.out.println("Name: " + name + "\nSize: " + size + " MB\n");				//For debugging getting file info
+						}
+					} catch (IOException e1) {
+						System.out.println("File could not be read.");
+						e1.printStackTrace();
+					}
+			}
+				
 		}
 		if(e.getSource() == decryptPanel.decrypt) {
-			
+			//AES decryption and save file dialog go here, or functions to call these
 		}
 		
 	}

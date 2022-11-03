@@ -7,7 +7,6 @@ public class MainMenu extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	JButton encOpt, decOpt, viewFile; //Three main options: encrypt, decrypt and view
-	ButtonGroup mainGroup;
 	
 	public MainMenu() {
 		encOpt = new JButton("Encrypt File");

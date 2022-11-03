@@ -33,7 +33,7 @@ public class MainUI extends JFrame implements ActionListener{
 	}
 
 	public static void main (String [] args) {
-		 new MainUI("SecureCrypt File Encryptor 0.1"); //Change version number for now, about window will be available soon.
+		 new MainUI("SecureCrypt File Encryptor 0.1.2"); //Change version number for now, about window will be available soon.
 	}
 	
 	@Override
