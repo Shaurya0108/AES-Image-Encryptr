@@ -1,4 +1,8 @@
 PLEASE ADD TO THIS WHEN YOU MAKE CHANGES
+11-5-22
+v0.1.3
+	*Added View Files menu
+	*Added lists to Encrypt and Decrypt files
 11-2-22
 v0.1.2
 	*Tweaked file selection
