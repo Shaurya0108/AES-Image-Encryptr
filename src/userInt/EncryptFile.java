@@ -1,6 +1,6 @@
 package userInt;
 
-
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -42,6 +42,8 @@ public class EncryptFile extends JFrame implements ActionListener {
 		encryptPanel.cancel.addActionListener(this);
 		encryptPanel.selectFile.addActionListener(this);		//Opens select file dialog using JFileChooser
 		encryptPanel.encrypt.addActionListener(this);
+
+
 	}
 	
 	public static void main(String[] args) {
@@ -69,6 +71,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 						if (readImage != null) {
 							name = file.getName();
 							size = file.length() / (1024 * 1024);
+							encryptPanel.listModel.insertElementAt(name, 0);
 							System.out.println("Name: " + name + "\nSize: " + size + " MB\n");				//For debugging getting file info
 						}
 					} catch (IOException e1) {

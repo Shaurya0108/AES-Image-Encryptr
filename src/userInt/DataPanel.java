@@ -13,7 +13,6 @@ public class DataPanel extends JPanel implements Scrollable{
 	JLabel displayPic;
 	JScrollBar scrollBar;
 	
-	
 	public DataPanel() {
 		setLayout(new FlowLayout());
 		
@@ -25,8 +24,7 @@ public class DataPanel extends JPanel implements Scrollable{
 		
 		file = new Label(filename);
 		//filesize = new Label(size);
-		
-		
+
 	}
 
 	@Override

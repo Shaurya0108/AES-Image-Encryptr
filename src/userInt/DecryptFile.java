@@ -1,5 +1,6 @@
 package userInt;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -18,7 +19,9 @@ public class DecryptFile extends JFrame implements ActionListener{
 	File file;
 	String name;
 	long size;
-		
+	
+	//JFileChooser selFileDialog;
+	
 	public DecryptFile() {
 		setTitle("decrypt File");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
