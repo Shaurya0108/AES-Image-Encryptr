@@ -10,20 +10,23 @@ public class EncryptPanel extends JPanel{
 	Label selectlbl;
 	DefaultListModel listModel;
 	JList files;
-	
+	JScrollPane fileScroll;
+
 	public EncryptPanel() {
 		cancel = new JButton("Cancel");
 		selectFile = new JButton("Select File(s)");
 		encrypt = new JButton("Begin Encryption");
 		selectlbl = new Label("Select file(s) to be encrypted");
 		listModel = new DefaultListModel<String>();
-		listModel.addElement("Test");
+
 		files = new JList<String>(listModel);
-		
+		fileScroll = new JScrollPane();
+		fileScroll.getViewport().setView(files);
+
 		setLayout(null);
 
-		files.setBounds(25, 100, 50,50);
-		add(files);
+		fileScroll.setBounds(25, 50, 440,100);
+		add(fileScroll);
 
 		selectlbl.setBounds(25, 0, 160, 50);
 		add(selectlbl);

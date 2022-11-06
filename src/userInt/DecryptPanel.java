@@ -14,8 +14,7 @@ public class DecryptPanel extends JPanel{
 		selectFile = new JButton("Select File(s)");
 		decrypt = new JButton("Begin decryption");
 		selectlbl = new Label("Select file(s) to be decrypted");
-		
-		
+
 		setLayout(null);
 		selectlbl.setBounds(25, 0, 160, 50);
 		add(selectlbl);

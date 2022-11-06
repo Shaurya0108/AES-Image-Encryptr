@@ -33,8 +33,6 @@ public class EncryptFile extends JFrame implements ActionListener {
 		setVisible(false);							//Will open when selected from main menu
 		
 		encryptPanel = new EncryptPanel();
-		
-		
 		add(encryptPanel);
 		
 		encryptPanel.cancel.addActionListener(this);

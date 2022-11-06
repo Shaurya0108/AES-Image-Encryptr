@@ -11,18 +11,21 @@ public class ViewPanel extends JPanel{
 	Label viewLabel;
 	DefaultListModel listModel;
 	JList files;
+	JScrollPane fileScroll;
 	
 	public ViewPanel() {
 		cancel = new JButton("Cancel");
 		viewLabel = new Label("View and edit files");
 		listModel = new DefaultListModel<String>();
-		listModel.addElement("Test");
+
 		files = new JList<String>(listModel);
+		fileScroll = new JScrollPane();
+		fileScroll.getViewport().setView(files);
 		
 		setLayout(null);
-		
-		files.setBounds(25, 100, 50,50);
-		add(files);
+
+		fileScroll.setBounds(25, 50, 440,100);
+		add(fileScroll);
 
 		viewLabel.setBounds(25, 0, 160, 50);
 		add(viewLabel);

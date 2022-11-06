@@ -1,4 +1,7 @@
 PLEASE ADD TO THIS WHEN YOU MAKE CHANGES
+11-6-22
+v0.1.4
+    *Finished list scroll
 11-5-22
 v0.1.3
 	*Added View Files menu
