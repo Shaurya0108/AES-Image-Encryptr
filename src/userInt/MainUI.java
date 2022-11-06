@@ -1,52 +1,63 @@
 package userInt;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
-public class MainUI extends JFrame implements ActionListener{
+public class MainUI extends JFrame{
 	private static final long serialVersionUID = 1L;
-	MainMenu mainMenu;
-	private EncryptFile encryptFile = new EncryptFile("Encrypt File");
-	private DecryptFile decryptFile = new DecryptFile("Decrypt File");
+	private static MainMenu mainMenu;
+	private LoginWelcomePage login;
+	private static EncryptFile encryptFile = new EncryptFile("Encrypt File");
+	private static DecryptFile decryptFile = new DecryptFile("Decrypt File");
+	private static ViewFile viewFile = new ViewFile("View Encrypted Files");
 	
 	public MainUI () {
-		setTitle("SecureCrypt File Encryptor");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
-		pack();
+		login = new LoginWelcomePage(this, true);
+		login.setVisible(true);
 	}
-
-	public MainUI(String title) {
-		setTitle(title);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400,400);
-		
-		mainMenu = new MainMenu();
-		add(mainMenu);
-		setLocationRelativeTo(null);
-		setVisible(true);
-		
-		mainMenu.encOpt.addActionListener(this);
-		mainMenu.decOpt.addActionListener(this);
-		mainMenu.viewFile.addActionListener(this);
-	}
-
 	public static void main (String [] args) {
-		 new MainUI("SecureCrypt File Encryptor 0.1.2"); //Change version number for now, about window will be available soon.
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == mainMenu.encOpt) {
-			encryptFile.setVisible(true);
-		}
-		if(e.getSource() == mainMenu.decOpt) {
-			decryptFile.setVisible(true);
-		}
-		if(e.getSource() == mainMenu.viewFile) {
+		SwingUtilities.invokeLater(new Runnable() {
 			
-		}
+			@Override
+			public void run() {
+				 JFrame start = new MainUI();
+				 start.setTitle("SecureCrypt File Encrypter 0.1.3");
+				 start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				 start.setSize(400,400);
+				 
+				 mainMenu = new MainMenu();
+				 start.add(mainMenu);
+				 start.setLocationRelativeTo(null);
+				 start.setVisible(true);
+					
+				//Action listener for button to go to encrypt menu
+				mainMenu.encOpt.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						encryptFile.setVisible(true);
+						
+					}
+				});
+				//Action listener for button to go to decrypt menu
+				mainMenu.decOpt.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						decryptFile.setVisible(true);
+						
+					}
+				});
+				//Action listener for button to go to view file menu
+				mainMenu.viewFile.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						viewFile.setVisible(true);
+						
+					}
+				});
+			}
+		});
 	}
-
 }

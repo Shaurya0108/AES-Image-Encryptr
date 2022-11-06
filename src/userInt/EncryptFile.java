@@ -1,10 +1,10 @@
 package userInt;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -18,7 +18,6 @@ public class EncryptFile extends JFrame implements ActionListener {
 	File file;
 	String name;
 	long size;
-	//DataPanel dataPanel;
 	
 	public EncryptFile() {
 		setTitle("Encrypt File");
@@ -30,11 +29,10 @@ public class EncryptFile extends JFrame implements ActionListener {
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(500,300);
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null);				//Opens in the center of screen
 		setVisible(false);							//Will open when selected from main menu
 		
 		encryptPanel = new EncryptPanel();
-		//dataPanel = new DataPanel();
 		
 		
 		add(encryptPanel);
@@ -65,7 +63,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 			switch (selFileDialog.showOpenDialog(this)) {
 				case JFileChooser.APPROVE_OPTION:
 					file = selFileDialog.getSelectedFile();
-					BufferedImage readImage;
+					BufferedImage readImage;					//BufferedImage reader for reading image files
 					try {
 						readImage = ImageIO.read(file);
 						if (readImage != null) {
@@ -83,7 +81,23 @@ public class EncryptFile extends JFrame implements ActionListener {
 						
 		}
 		if(e.getSource() == encryptPanel.encrypt) {
-			//AES Encryption and Save Dialog should go here, or function to call these 
+			//AES Encryption should go here, or function to call it
+			
+			JFileChooser saveFileDialog = new JFileChooser();
+			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
+			saveFileDialog.setFileFilter(saveFil);
+			saveFileDialog.setBounds(0, 7, 500, 300);
+			switch(saveFileDialog.showSaveDialog(this)) {
+			case JFileChooser.APPROVE_OPTION:
+				try {
+					FileWriter fw = new FileWriter(saveFileDialog.getSelectedFile());
+					//fw.write(null)		//Replace null with AES file to be saved
+				} catch (IOException e1) {
+					System.out.println("Unable to save file");
+					e1.printStackTrace();
+				}
+				
+			}
 		}
 		
 	}

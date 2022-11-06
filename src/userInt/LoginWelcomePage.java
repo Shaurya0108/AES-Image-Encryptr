@@ -5,11 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class LoginWelcomePage extends JFrame implements ActionListener{
+//Login Page needs to be a JDialog for it to appear before the main menu
+public class LoginWelcomePage extends JDialog{
 	private static final long serialVersionUID = 1L;
-	JFrame frm = new JFrame();
 	JButton loginBtn = new JButton("Log In");
-	JButton clearBtn = new JButton("Clear");
+	JButton closeBtn = new JButton("Close");
 	JTextField uName = new JTextField();
 	JPasswordField pWord = new JPasswordField();
 	JLabel mLabel = new JLabel("Welcome to Securecrypt!");
@@ -21,6 +21,10 @@ public class LoginWelcomePage extends JFrame implements ActionListener{
 	 * buttons for logging in and clearing input
 	 */
 	public LoginWelcomePage() {
+		this (null, true);
+	}
+	public LoginWelcomePage(final JFrame parent, boolean modal) {
+		super(parent, modal); //Parent frame is the main UI, the login window will appear first
 		
 		uNameLabel.setBounds(50, 100, 75, 25);
 		pWordLabel.setBounds(50, 150, 75, 25);
@@ -32,42 +36,40 @@ public class LoginWelcomePage extends JFrame implements ActionListener{
 		pWord.setBounds(130,150,200,25);
 		
 		loginBtn.setBounds(130,200,100,25);
-		loginBtn.addActionListener(this);
+		loginBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					parent.setVisible(true);
+					setVisible(false);
+			}
+		});
 		loginBtn.setFocusable(false);
 		
-		clearBtn.setBounds(230,200,100,25);
-		clearBtn.addActionListener(this);
-		clearBtn.setFocusable(false);
+		closeBtn.setBounds(230,200,100,25);
+		closeBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+					parent.dispose();
+					System.exit(0);
+			}
+			
+		});
+		closeBtn.setFocusable(false);
 		
-		frm.add(mLabel);
-		frm.add(uNameLabel);
-		frm.add(pWordLabel);
-		frm.add(uName);
-		frm.add(pWord);
-		frm.add(loginBtn);
-		frm.add(clearBtn);
-		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frm.setSize(415,415);
-		frm.setLayout(null);
-		frm.setVisible(true);	
+		add(mLabel);
+		add(uNameLabel);
+		add(pWordLabel);
+		add(uName);
+		add(pWord);
+		add(loginBtn);
+		add(closeBtn);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(415,415);
+		setLayout(null);
+		setLocationRelativeTo(null);
 		
-	}
-	
-	@Override  //overrides ActionListener's default actionPerformed() method
-	/* Takes an ActionEvent object that holds the user's input/action for "login" 
-	 * or "clear" and continues based on that action. "Clear" clears the username
-	 * and password text fields whereas "login" opens up the main menu and closes 
-	 * the login/welcome page
-	 */
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == clearBtn) {
-			uName.setText("");
-			pWord.setText("");
-		}
-		
-		if(e.getSource() == loginBtn) {
-			MainUI mUI = new MainUI("SecureCrypt File Encryptor 0.1.2");
-			frm.dispose();
-		}
 	}
 }
