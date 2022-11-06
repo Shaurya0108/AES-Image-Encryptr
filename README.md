@@ -2,7 +2,7 @@
 
 ## Project Name: Securecrypt
 
-## Project for CS3354.501
+## Project for CS3354.005
 
 ### Created by Shaurya Dwivedi, Len Bucchino, Marvel Hernandez, Alan Arevalo, and Mason Garcia
 
