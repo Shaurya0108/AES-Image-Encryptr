@@ -8,7 +8,7 @@
 * The main advantage of this mode, compared to other operation modes of the algorithm, is its efficiency.
 */
 
-//this file was written by Shaurya Dwivedi &
+//this file was written by Shaurya Dwivedi & Len Bucchino
 
 //import java cryptographic library
 import javax.crypto.KeyGenerator;
