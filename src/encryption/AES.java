@@ -2,7 +2,7 @@ package encryption;
 /**
 * CS3354.005
 * Group 9: Shaurya Dwivedi, Len Bucchino, Marvel Hernandez, Alan Arevalo, Mason Garcia
-* Project Name: Securecrypt
+* Project Name: Securecrypt 
 * This file includes an AES algorithm that uses GCM to encrypt and decrypt files and messages.
 * The AES algorithm is used to encrypt and decrypt files and messages.
 * The GCM model outputs ciphertext and an authentication tag.
