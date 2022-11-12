@@ -1,9 +1,14 @@
-//Panel to add buttons and list for encryption window
+
 package userInt.mainMenu;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**Panel to add buttons and list for encryption window
+ * 
+ * @author Alan
+ *
+ */
 public class EncryptPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 

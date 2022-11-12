@@ -4,20 +4,28 @@
 
 package userInt.mainMenu;
 
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.Key;
+import java.util.Random;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import encryption.AES;
+import encryption.ConvertBytes;
+
 public class EncryptFile extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
+	private static final String CIPHER = "AES";
 	EncryptPanel encryptPanel;
 	File file;
 	String name;
@@ -50,6 +58,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 		new EncryptFile("Encrypt File");
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//Close the window without exiting program
@@ -84,7 +93,51 @@ public class EncryptFile extends JFrame implements ActionListener {
 		}
 		if(e.getSource() == encryptPanel.encrypt) {
 			//AES Encryption should go here, or function to call it
+			ConvertBytes imgConvert, revertToFile;
+			Key encryptKey;
+			File encryptedFile;
 			
+			if(file == null) {
+				System.out.println("No files found");
+			}
+			
+			byte[] bytes = null;
+			
+			imgConvert = new ConvertBytes();
+			try {
+				bytes = imgConvert.getBytes(file);
+			} catch (FileNotFoundException e1) {
+				System.out.println("Could not locate file");
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				System.out.println("An error occured, could not convert file");
+				e1.printStackTrace();
+			}
+			
+			encryptKey = getRandomKey(CIPHER, 128);
+			
+			AES encryptAES = new AES();
+			byte[] encryptedFileBytes = encryptAES.encrypt(bytes, encryptKey.getEncoded());
+			
+			revertToFile = new ConvertBytes();
+			encryptedFile = file;
+			try {
+				revertToFile.revertToFile(encryptedFileBytes, encryptedFile);	//Using the bytes of the encrypted file, it will convert back to a file
+			} catch (IOException e2) {
+				System.out.println("Unable to convert back to file");
+				e2.printStackTrace();
+			}				
+			
+			FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
+			saveFile.setVisible(true);
+			String path = saveFile.getDirectory() + saveFile.getFile();
+			File f = new File(path);
+			try {
+				f.createNewFile();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			/*JFileChooser saveFileDialog = new JFileChooser();
 			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
 			saveFileDialog.setFileFilter(saveFil);
@@ -92,15 +145,25 @@ public class EncryptFile extends JFrame implements ActionListener {
 			switch(saveFileDialog.showSaveDialog(this)) {
 			case JFileChooser.APPROVE_OPTION:
 				try {
-					FileWriter fw = new FileWriter(saveFileDialog.getSelectedFile());
-					//fw.write(null)		//Replace null with AES file to be saved
+					FileWriter fw = new FileWriter(encryptedFile+".png");
+					fw.write(encryptedFile.toString());
+					fw.close();
+					
 				} catch (IOException e1) {
 					System.out.println("Unable to save file");
 					e1.printStackTrace();
 				}
 				
 			}*/
+			dispose();
 		}
 		
+	}
+	
+	private static Key getRandomKey(String cipher, int keySize) {
+		byte[] randomKeyBytes = new byte[keySize / 8];
+		Random random = new Random();
+		random.nextBytes(randomKeyBytes);
+		return new SecretKeySpec(randomKeyBytes, cipher);
 	}
 }
