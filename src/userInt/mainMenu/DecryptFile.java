@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import encryption.AES;
 import encryption.ConvertBytes;
+import userInt.mainMenu.EncryptFile;
 
 /**Module which selects a file and runs the decryption algorithm.
 * It is similar to the encryption module, except this will decrypt the file.
@@ -83,10 +84,12 @@ public class DecryptFile extends JFrame implements ActionListener{
 					BufferedImage readImage;
 					try {
 						readImage = ImageIO.read(file);
+						decryptPanel.listModel.insertElementAt(file.getName(), 0);
 						if (readImage != null) {
 							name = file.getName();
 							size = file.length() / (1024 * 1024);
 							System.out.println("Name: " + name + "\nSize: " + size + " MB\n");				//For debugging getting file info
+							//decryptPanel.listModel.insertElementAt(name, 0);
 						}
 					} catch (IOException e1) {
 						System.out.println("File could not be read.");
@@ -118,7 +121,8 @@ public class DecryptFile extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 			
-			decryptKey = getRandomKey(CIPHER, 128);
+			Test keys = new Test();
+			decryptKey = keys.getKey();
 			
 			AES encryptAES = new AES();
 			byte[] decryptedFileBytes = encryptAES.decrypt(bytes, decryptKey.getEncoded());
@@ -132,7 +136,7 @@ public class DecryptFile extends JFrame implements ActionListener{
 				e2.printStackTrace();
 			}				
 			
-			FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
+			/*FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
 			saveFile.setVisible(true);
 			String path = saveFile.getDirectory() + saveFile.getFile();
 			File f = new File(path);
@@ -143,7 +147,7 @@ public class DecryptFile extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 			
-			/*JFileChooser saveFileDialog = new JFileChooser();
+			JFileChooser saveFileDialog = new JFileChooser();
 			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
 			saveFileDialog.setFileFilter(saveFil);
 			saveFileDialog.setBounds(0, 7, 500, 300);
@@ -163,11 +167,5 @@ public class DecryptFile extends JFrame implements ActionListener{
 		}
 		
 		
-}
-		private static Key getRandomKey(String cipher, int keySize) {
-			byte[] randomKeyBytes = new byte[keySize / 8];
-			Random random = new Random();
-			random.nextBytes(randomKeyBytes);
-			return new SecretKeySpec(randomKeyBytes, cipher);
-		}
+	}
 }

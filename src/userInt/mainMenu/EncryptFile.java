@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.Key;
 import java.util.Random;
@@ -22,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import encryption.AES;
 import encryption.ConvertBytes;
+import userInt.mainMenu.Test;
 
 public class EncryptFile extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -77,12 +79,15 @@ public class EncryptFile extends JFrame implements ActionListener {
 					BufferedImage readImage;					//BufferedImage reader for reading image files
 					try {
 						readImage = ImageIO.read(file);
+						//encryptPanel.listModel.insertElementAt(file.getName(), 0);
 						if (readImage != null) {
 							name = file.getName();
 							size = file.length() / (1024 * 1024);
 							encryptPanel.listModel.insertElementAt(name, 0);
 							System.out.println("Name: " + name + "\nSize: " + size + " MB\n");				//For debugging getting file info
 						}
+						else
+							System.out.println("File is null");
 					} catch (IOException e1) {
 						System.out.println("File could not be read.");
 						e1.printStackTrace();
@@ -94,7 +99,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 		if(e.getSource() == encryptPanel.encrypt) {
 			//AES Encryption should go here, or function to call it
 			ConvertBytes imgConvert, revertToFile;
-			Key encryptKey;
+			
 			File encryptedFile;
 			
 			if(file == null) {
@@ -114,7 +119,19 @@ public class EncryptFile extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			encryptKey = getRandomKey(CIPHER, 128);
+			Key encryptKey = getRandomKey(CIPHER, 128);
+			Test testKey = new Test();
+			testKey.testKey = encryptKey;
+			
+			System.out.println("Key: "+ encryptKey.toString());
+			
+			/*try {
+				FileWriter writeKey = new FileWriter("/Users/Alan/Desktop/keys.txt");
+				writeKey.write(encryptKey.toString());
+			} catch (IOException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}*/
 			
 			AES encryptAES = new AES();
 			byte[] encryptedFileBytes = encryptAES.encrypt(bytes, encryptKey.getEncoded());
@@ -128,7 +145,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 				e2.printStackTrace();
 			}				
 			
-			FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
+			/*FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
 			saveFile.setVisible(true);
 			String path = saveFile.getDirectory() + saveFile.getFile();
 			File f = new File(path);
@@ -138,7 +155,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			/*JFileChooser saveFileDialog = new JFileChooser();
+			JFileChooser saveFileDialog = new JFileChooser();
 			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
 			saveFileDialog.setFileFilter(saveFil);
 			saveFileDialog.setBounds(0, 7, 500, 300);
