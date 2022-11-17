@@ -101,7 +101,6 @@ public class DecryptFile extends JFrame implements ActionListener{
 		if(e.getSource() == decryptPanel.decrypt) {
 			//AES decryption and save file dialog go here, or functions to call these
 			ConvertBytes unencryptImage, revertToFile;
-			Key decryptKey;
 			File decryptedFile;
 			
 			if(file == null) {
@@ -121,11 +120,12 @@ public class DecryptFile extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 			
-			Test keys = new Test();
-			decryptKey = keys.getKey();
+			Test testKey = new Test();
+			byte[] decryptKey = testKey.getKey();
+		
 			
 			AES encryptAES = new AES();
-			byte[] decryptedFileBytes = encryptAES.decrypt(bytes, decryptKey.getEncoded());
+			byte[] decryptedFileBytes = encryptAES.decrypt(bytes, decryptKey, 4);
 			
 			revertToFile = new ConvertBytes();
 			decryptedFile = file;
@@ -147,7 +147,7 @@ public class DecryptFile extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 			
-			JFileChooser saveFileDialog = new JFileChooser();
+			/*JFileChooser saveFileDialog = new JFileChooser();
 			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
 			saveFileDialog.setFileFilter(saveFil);
 			saveFileDialog.setBounds(0, 7, 500, 300);

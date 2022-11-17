@@ -119,7 +119,14 @@ public class EncryptFile extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			Key encryptKey = getRandomKey(CIPHER, 128);
+			AES getKey = new AES();
+			byte[] encryptKey = null;
+			try {
+				encryptKey = getKey.KeyGenerationForEncryption();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			Test testKey = new Test();
 			testKey.testKey = encryptKey;
 			
@@ -134,7 +141,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 			}*/
 			
 			AES encryptAES = new AES();
-			byte[] encryptedFileBytes = encryptAES.encrypt(bytes, encryptKey.getEncoded());
+			byte[] encryptedFileBytes = encryptAES.encrypt(bytes, encryptKey);
 			
 			revertToFile = new ConvertBytes();
 			encryptedFile = file;
@@ -155,7 +162,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			JFileChooser saveFileDialog = new JFileChooser();
+			/*JFileChooser saveFileDialog = new JFileChooser();
 			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
 			saveFileDialog.setFileFilter(saveFil);
 			saveFileDialog.setBounds(0, 7, 500, 300);
@@ -175,12 +182,5 @@ public class EncryptFile extends JFrame implements ActionListener {
 			dispose();
 		}
 		
-	}
-	
-	private static Key getRandomKey(String cipher, int keySize) {
-		byte[] randomKeyBytes = new byte[keySize / 8];
-		Random random = new Random();
-		random.nextBytes(randomKeyBytes);
-		return new SecretKeySpec(randomKeyBytes, cipher);
 	}
 }

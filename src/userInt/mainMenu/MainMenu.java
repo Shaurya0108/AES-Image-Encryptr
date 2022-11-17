@@ -23,7 +23,7 @@ public class MainMenu extends JPanel{
 	JButton encOpt, decOpt, viewFile; //Three main options: encrypt, decrypt and view
 	JMenuBar optionsBar;
 	JMenu accountOptions, accountSub, encryptOptions, encryptSub;
-	JMenuItem createAcc, manAcc, saveOption;
+	JMenuItem createAcc, manAcc, changeAcc, saveOption;
 	JRadioButtonMenuItem save, replace;
 	
 	
@@ -64,6 +64,18 @@ public class MainMenu extends JPanel{
 			}
 		});
 		accountOptions.add(manAcc);
+		changeAcc = new JMenuItem("Switch Account");
+		changeAcc.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.ALT_MASK));
+		changeAcc.getAccessibleContext().setAccessibleDescription("Login to another account");
+		changeAcc.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		accountOptions.add(changeAcc);
 		
 		
 		//Settings option

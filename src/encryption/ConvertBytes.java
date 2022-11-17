@@ -1,6 +1,7 @@
 package encryption;
 
 import java.io.*;
+import java.nio.file.Files;
 
 /**Class for converting files into a byte array and vice versa
  */
@@ -13,7 +14,7 @@ public class ConvertBytes {
 	 * */
 	public static byte[] getBytes(File f) throws FileNotFoundException, IOException {
 		System.out.println(f.getName());
-		byte[] buffer = new byte[1024]; //Set max bytes to be read
+		/*byte[] buffer = new byte[4096]; //Set max bytes to be read
 		ByteArrayOutputStream imageBytes = new ByteArrayOutputStream(); //Bytes read from files written here
 		FileInputStream fis = new FileInputStream(f);	//File is read from here
 		int read;
@@ -23,7 +24,9 @@ public class ConvertBytes {
 		}
 		fis.close();
 		imageBytes.close();
-		return imageBytes.toByteArray();
+		return imageBytes.toByteArray();*/
+		byte[] imageBytes = Files.readAllBytes(f.toPath());
+		return imageBytes;
 	}
 	
 	/**
@@ -33,13 +36,14 @@ public class ConvertBytes {
 	 * @throws IOException
 	 */
 	public static void revertToFile(byte[] data, File dest) throws IOException {
-		try {
+		Files.write(dest.toPath(), data);
+		/*try {
 			FileOutputStream toFile = new FileOutputStream(dest);
 			toFile.write(data);
 			toFile.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
