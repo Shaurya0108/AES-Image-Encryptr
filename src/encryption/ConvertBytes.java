@@ -10,7 +10,8 @@ public class ConvertBytes {
 	/**This method converts a file into readable bytes
 	 * @param f is the file that is being converted
 	 * @return Converted bytes into a byte array
-	 * @throws FileNotFoundException,  IOException
+	 * @throws FileNotFoundException
+	 * @throws IOException
 	 * */
 	public static byte[] getBytes(File f) throws FileNotFoundException, IOException {
 		System.out.println(f.getName());

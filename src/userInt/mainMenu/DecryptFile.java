@@ -1,25 +1,24 @@
 package userInt.mainMenu;
 
-import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.security.Key;
-import java.util.Random;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import encryption.AES;
 import encryption.ConvertBytes;
-import userInt.mainMenu.EncryptFile;
+import encryption.Encryption;
 
 /**Module which selects a file and runs the decryption algorithm.
 * It is similar to the encryption module, except this will decrypt the file.
@@ -27,7 +26,7 @@ import userInt.mainMenu.EncryptFile;
 */
 public class DecryptFile extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	private static final String CIPHER = "AES";
+	private static final String CIPHER = "AES/CBC/PKCS5Padding";
 	DecryptPanel decryptPanel;
 	
 	File file;
@@ -75,7 +74,7 @@ public class DecryptFile extends JFrame implements ActionListener{
 		}
 		if(e.getSource() == decryptPanel.selectFile) {
 			JFileChooser selFileDialog = new JFileChooser();
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //File type for AES files is .aes? Change if necessary.
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("AES", "aes"); //File type for AES files is .aes? Change if necessary.
 			selFileDialog.setFileFilter(filter);
 			selFileDialog.setBounds(0, 7, 500, 300);
 			switch (selFileDialog.showOpenDialog(this)) {
@@ -101,68 +100,46 @@ public class DecryptFile extends JFrame implements ActionListener{
 		if(e.getSource() == decryptPanel.decrypt) {
 			//AES decryption and save file dialog go here, or functions to call these
 			ConvertBytes unencryptImage, revertToFile;
-			File decryptedFile;
+			Encryption decryptFile = new Encryption();
+			Test test;
 			
+			String abosPath = file.getAbsolutePath();
+
+			File tempDir = new File(abosPath);
+			File decryptedFile = new File(tempDir.toPath().toString().replace(".aes", ""));
+						
+			test = new Test();
+
 			if(file == null) {
 				System.out.println("No files found");
 			}
 			
-			byte[] bytes = null;
-			
-			unencryptImage = new ConvertBytes();
 			try {
-				bytes = unencryptImage.getBytes(file);
-			} catch (FileNotFoundException e1) {
-				System.out.println("Could not locate file");
+				decryptFile.decryptFile(CIPHER, test.getKey(), test.getIv(), file, decryptedFile);
+			} catch (InvalidKeyException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			} catch (IOException e1) {
-				System.out.println("An error occured. Could not convert file.");
+			} catch (NoSuchPaddingException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			
-			Test testKey = new Test();
-			byte[] decryptKey = testKey.getKey();
-		
-			
-			AES encryptAES = new AES();
-			byte[] decryptedFileBytes = encryptAES.decrypt(bytes, decryptKey, 4);
-			
-			revertToFile = new ConvertBytes();
-			decryptedFile = file;
-			try {
-				revertToFile.revertToFile(decryptedFileBytes, decryptedFile);			 //Using the bytes of the encrypted file, it will convert back to a file
-			} catch (IOException e2) {
-				System.out.println("Unable to convert back to file");
-				e2.printStackTrace();
-			}				
-			
-			/*FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
-			saveFile.setVisible(true);
-			String path = saveFile.getDirectory() + saveFile.getFile();
-			File f = new File(path);
-			try {
-				f.createNewFile();
+			} catch (NoSuchAlgorithmException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidAlgorithmParameterException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (BadPaddingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IllegalBlockSizeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
-			/*JFileChooser saveFileDialog = new JFileChooser();
-			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
-			saveFileDialog.setFileFilter(saveFil);
-			saveFileDialog.setBounds(0, 7, 500, 300);
-			switch(saveFileDialog.showSaveDialog(this)) {
-			case JFileChooser.APPROVE_OPTION:
-				try {
-					FileWriter fw = new FileWriter(decryptedFile+".png");
-					fw.write(decryptedFile.toString());
-					fw.close();
-				} catch (IOException e1) {
-					System.out.println("Unable to save file");
-					e1.printStackTrace();
-				}
-				
-			}*/
+			file.delete();
 			dispose();
 		}
 		

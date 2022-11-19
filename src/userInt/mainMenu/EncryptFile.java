@@ -4,30 +4,32 @@
 
 package userInt.mainMenu;
 
-import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.security.Key;
-import java.util.Random;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import encryption.AES;
-import encryption.ConvertBytes;
-import userInt.mainMenu.Test;
+import encryption.Encryption;
 
 public class EncryptFile extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	private static final String CIPHER = "AES";
+	private static final String CIPHER = "AES/CBC/PKCS5Padding";
 	EncryptPanel encryptPanel;
 	File file;
 	String name;
@@ -97,60 +99,55 @@ public class EncryptFile extends JFrame implements ActionListener {
 						
 		}
 		if(e.getSource() == encryptPanel.encrypt) {
-			//AES Encryption should go here, or function to call it
-			ConvertBytes imgConvert, revertToFile;
+			Encryption encryptFile = null;
 			
-			File encryptedFile;
+			String abosPath = file.getAbsolutePath();
+
+			File tempDir = new File(abosPath);
+			File encryptedFile = new File(tempDir.toPath().toString() + ".aes");
 			
+			
+			SecretKey key = null;
+			try {
+				key = getKey(128);
+				Test testKey = new Test();
+				testKey.testKey = key;
+			} catch (NoSuchAlgorithmException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			IvParameterSpec iv = generateIv();
+			Test testIv = new Test();
+			testIv.testIv = iv;
+				
 			if(file == null) {
 				System.out.println("No files found");
 			}
 			
-			byte[] bytes = null;
-			
-			imgConvert = new ConvertBytes();
 			try {
-				bytes = imgConvert.getBytes(file);
-			} catch (FileNotFoundException e1) {
-				System.out.println("Could not locate file");
+				encryptFile.encryptFile(CIPHER, key, iv, file, encryptedFile);
+			} catch (InvalidKeyException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NoSuchPaddingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NoSuchAlgorithmException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidAlgorithmParameterException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (BadPaddingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IllegalBlockSizeException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				System.out.println("An error occured, could not convert file");
-				e1.printStackTrace();
-			}
-			
-			AES getKey = new AES();
-			byte[] encryptKey = null;
-			try {
-				encryptKey = getKey.KeyGenerationForEncryption();
-			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			Test testKey = new Test();
-			testKey.testKey = encryptKey;
-			
-			System.out.println("Key: "+ encryptKey.toString());
-			
-			/*try {
-				FileWriter writeKey = new FileWriter("/Users/Alan/Desktop/keys.txt");
-				writeKey.write(encryptKey.toString());
-			} catch (IOException e3) {
-				// TODO Auto-generated catch block
-				e3.printStackTrace();
-			}*/
-			
-			AES encryptAES = new AES();
-			byte[] encryptedFileBytes = encryptAES.encrypt(bytes, encryptKey);
-			
-			revertToFile = new ConvertBytes();
-			encryptedFile = file;
-			try {
-				revertToFile.revertToFile(encryptedFileBytes, encryptedFile);	//Using the bytes of the encrypted file, it will convert back to a file
-			} catch (IOException e2) {
-				System.out.println("Unable to convert back to file");
-				e2.printStackTrace();
-			}				
 			
 			/*FileDialog saveFile = new FileDialog(this, "Save", FileDialog.SAVE);
 			saveFile.setVisible(true);
@@ -161,26 +158,36 @@ public class EncryptFile extends JFrame implements ActionListener {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			/*JFileChooser saveFileDialog = new JFileChooser();
-			FileNameExtensionFilter saveFil = new FileNameExtensionFilter("PNG, JPG", "png", "jpg"); //Can be replaced with other file types
-			saveFileDialog.setFileFilter(saveFil);
-			saveFileDialog.setBounds(0, 7, 500, 300);
-			switch(saveFileDialog.showSaveDialog(this)) {
-			case JFileChooser.APPROVE_OPTION:
-				try {
-					FileWriter fw = new FileWriter(encryptedFile+".png");
-					fw.write(encryptedFile.toString());
-					fw.close();
-					
-				} catch (IOException e1) {
-					System.out.println("Unable to save file");
-					e1.printStackTrace();
-				}
-				
 			}*/
+			
+			
+			file.delete();
+			
 			dispose();
 		}
 		
+	}
+	
+	/**Generates a psuedo-value to be used to initialize an encryption method
+	 * 
+	 * @return IvParameterSpec(iv)
+	 */
+	public static IvParameterSpec generateIv() {
+		byte [] iv  = new byte[16];
+		new SecureRandom().nextBytes(iv);
+		return new IvParameterSpec(iv);
+	}
+	
+	/**
+	 * Generates a SecretKey to be used for GCM encryption method
+	 * @param n is the number of bits to generate the key (default is 128)
+	 * @return originalKey
+	 * @throws NoSuchAlgorithmException
+	 */
+	private static SecretKey getKey(int n) throws NoSuchAlgorithmException {
+		KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+		keyGenerator.init(n);
+		SecretKey originalKey = keyGenerator.generateKey();
+		return originalKey;
 	}
 }
