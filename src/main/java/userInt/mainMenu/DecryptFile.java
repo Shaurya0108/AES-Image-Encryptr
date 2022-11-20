@@ -27,7 +27,7 @@ import encryption.Encryption;
 public class DecryptFile extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private static final String CIPHER = "AES/CBC/PKCS5Padding";
-	DecryptPanel decryptPanel;
+	public DecryptPanel decryptPanel;
 	
 	File file;
 	String name;
@@ -83,7 +83,7 @@ public class DecryptFile extends JFrame implements ActionListener{
 					BufferedImage readImage;
 					try {
 						readImage = ImageIO.read(file);
-						decryptPanel.listModel.insertElementAt(file.getName(), 0);
+						decryptPanel.addToList(file.getName(), 0);
 						if (readImage != null) {
 							name = file.getName();
 							size = file.length() / (1024 * 1024);

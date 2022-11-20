@@ -20,11 +20,11 @@ import javax.swing.KeyStroke;
 public class MainMenu extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	JButton encOpt, decOpt, viewFile; //Three main options: encrypt, decrypt and view
-	JMenuBar optionsBar;
+	public JButton encOpt, decOpt, viewFile; //Three main options: encrypt, decrypt and view
+	public JMenuBar optionsBar;
 	JMenu accountOptions, accountSub, encryptOptions, encryptSub;
-	JMenuItem createAcc, manAcc, changeAcc, saveOption;
-	JRadioButtonMenuItem save, replace;
+	public JMenuItem createAcc, manAcc, changeAcc, saveOption;
+	public JRadioButtonMenuItem save, replace;
 	
 	
 	public MainMenu() {
@@ -76,8 +76,7 @@ public class MainMenu extends JPanel{
 			}
 		});
 		accountOptions.add(changeAcc);
-		
-		
+
 		//Settings option
 		encryptOptions = new JMenu("Config");
 		encryptOptions.setMnemonic(KeyEvent.VK_C);
@@ -96,9 +95,6 @@ public class MainMenu extends JPanel{
 		saveOption.add(replace);
 		encryptOptions.add(saveOption);
 		
-		
-		
-		
 		setLayout(null);
 		//Custom placement of buttons
 		encOpt.setBounds(75, 60, 220, 50);
@@ -109,4 +105,6 @@ public class MainMenu extends JPanel{
 		add(decOpt);
 		add(viewFile);
 	}
+
+
 }

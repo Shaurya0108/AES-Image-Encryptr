@@ -12,11 +12,11 @@ import java.awt.*;
 public class EncryptPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
-	JButton cancel, selectFile, encrypt;
+	public JButton cancel, selectFile, encrypt;
 	Label selectlbl;
 	DefaultListModel listModel;
 	JList files;
-	JScrollPane fileScroll;
+	public JScrollPane fileScroll;
 
 	public EncryptPanel() {
 		cancel = new JButton("Cancel");
@@ -44,6 +44,14 @@ public class EncryptPanel extends JPanel{
 		add(cancel);
 		add(selectFile);
 		add(encrypt);
+	}
+
+	public void addToList(String name, int index) {
+		listModel.insertElementAt(name, index);
+	}
+
+	public int filesInList() {
+		return listModel.getSize();
 	}
 	
 	

@@ -22,6 +22,7 @@ public class MainUI extends JFrame{
 		login = new LoginWelcomePage(this, true);
 		login.setVisible(true);
 	}
+
 	public static void main (String [] args) {
 		//Main program opens when the user successfully logs in
 		SwingUtilities.invokeLater(new Runnable() {
@@ -69,4 +70,9 @@ public class MainUI extends JFrame{
 			}
 		});
 	}
+
+	public boolean loginExists() {
+		return login != null;
+	}
+
 }

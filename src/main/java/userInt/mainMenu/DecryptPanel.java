@@ -7,11 +7,11 @@ import javax.swing.*;
 
 public class DecryptPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	JButton cancel, selectFile, decrypt;
+	public JButton cancel, selectFile, decrypt;
 	Label selectlbl;
 	DefaultListModel listModel;
 	JList files;
-	JScrollPane fileScroll;
+	public JScrollPane fileScroll;
 	
 	public DecryptPanel() {
 		cancel = new JButton("Cancel");
@@ -40,6 +40,14 @@ public class DecryptPanel extends JPanel{
 		add(cancel);
 		add(selectFile);
 		add(decrypt);
+	}
+
+	public void addToList(String name, int index) {
+		listModel.insertElementAt(name, index);
+	}
+
+	public int filesInList() {
+		return listModel.getSize();
 	}
 	
 }

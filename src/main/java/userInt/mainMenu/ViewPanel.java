@@ -8,7 +8,7 @@ import javax.swing.*;
 public class ViewPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	JButton cancel;
+	public JButton cancel;
 	Label viewLabel;
 	DefaultListModel listModel;
 	JList files;

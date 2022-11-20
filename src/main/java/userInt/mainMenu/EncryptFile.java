@@ -30,7 +30,7 @@ import encryption.Encryption;
 public class EncryptFile extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private static final String CIPHER = "AES/CBC/PKCS5Padding";
-	EncryptPanel encryptPanel;
+	public EncryptPanel encryptPanel;
 	File file;
 	String name;
 	long size;
@@ -85,7 +85,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 						if (readImage != null) {
 							name = file.getName();
 							size = file.length() / (1024 * 1024);
-							encryptPanel.listModel.insertElementAt(name, 0);
+							encryptPanel.addToList(name, 0);
 							System.out.println("Name: " + name + "\nSize: " + size + " MB\n");				//For debugging getting file info
 						}
 						else
