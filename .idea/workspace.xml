@@ -5,35 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85da0558-b768-44b6-8038-022cc44e997a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AES-Image-Encryptr.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/Tests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/encryption/ConvertBytes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/encryption/ConvertBytes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/encryption/Encryption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/encryption/Encryption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/DecryptFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/DecryptFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/DecryptPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/DecryptPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/EncryptFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/EncryptPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/LoginWelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/LoginWelcomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/MainUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/ViewFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/ViewFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/mainMenu/ViewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/ViewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/options/CreateAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/options/CreateAcc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInt/options/ManageAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/options/ManageAcc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/AES_Image_Encryptr_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/KeyManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/KeyPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AES-Image-Encryptr.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AES-Image-Encryptr.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/DecryptFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/DecryptFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/LoginWelcomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/LoginWelcomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/MainUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/EncryptFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/EncryptFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/LoginWelcomePage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/LoginWelcomePage$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/LoginWelcomePage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/LoginWelcomePage$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/LoginWelcomePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/LoginWelcomePage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userInt/mainMenu/MainUI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,17 +75,28 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2229885" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
-  <component name="RunManager" selected="JUnit.Testing">
-    <configuration name="program" type="Application" factoryName="Application" activateToolWindowBeforeRun="false">
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="userInt.mainMenu" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.main">
+    <configuration name="main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="userInt.mainMenu.MainUI" />
       <module name="AES-Image-Encryptr" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="program" type="Application" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
@@ -153,7 +162,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.program" />
+      <item itemvalue="Application.main" />
       <item itemvalue="JUnit.Testing" />
       <item itemvalue="JUnit.Tests" />
     </list>
@@ -184,5 +193,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

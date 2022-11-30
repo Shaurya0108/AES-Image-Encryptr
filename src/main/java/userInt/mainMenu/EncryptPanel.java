@@ -18,7 +18,7 @@ public class EncryptPanel extends JPanel{
 	JList files;
 	public JScrollPane fileScroll;
 
-	public EncryptPanel() {
+	public EncryptPanel(MainUI mainUI) {
 		cancel = new JButton("Cancel");
 		selectFile = new JButton("Select File(s)");
 		encrypt = new JButton("Begin Encryption");

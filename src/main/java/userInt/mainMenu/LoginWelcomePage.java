@@ -6,10 +6,12 @@ package userInt.mainMenu;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.*;
 
 //Login Page needs to be a JDialog for it to appear before the main menu
 public class LoginWelcomePage extends JDialog{
+
 	private static final long serialVersionUID = 1L;
 	JButton loginBtn = new JButton("Log In");
 	JButton closeBtn = new JButton("Close");
@@ -26,6 +28,7 @@ public class LoginWelcomePage extends JDialog{
 	public LoginWelcomePage() {
 		this (null, true);
 	}
+
 	public LoginWelcomePage(final JFrame parent, boolean modal) {
 		super(parent, modal); //Parent frame is the main UI, the login window will appear first
 		
@@ -40,25 +43,27 @@ public class LoginWelcomePage extends JDialog{
 		
 		loginBtn.setBounds(130,200,100,25);
 		loginBtn.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String username = uName.getText();
+				char[] password = pWord.getPassword();
+				if(validateCredentials(username, password)) {
 					parent.setVisible(true);
+				} else {
 					setVisible(false);
+				}
 			}
 		});
 		loginBtn.setFocusable(false);
 		
 		closeBtn.setBounds(230,200,100,25);
 		closeBtn.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					setVisible(false);
-					parent.dispose();
-					System.exit(0);
+				setVisible(false);
+				parent.dispose();
+				System.exit(0);
 			}
-			
 		});
 		closeBtn.setFocusable(false);
 		
@@ -74,5 +79,21 @@ public class LoginWelcomePage extends JDialog{
 		setLayout(null);
 		setLocationRelativeTo(null);
 		
+	}
+
+	private boolean validateCredentials(String username, char[] password) {
+
+		String directory = System.getProperty("user.dir");
+		File file = new File(directory + "/" + username + ".txt");
+		System.out.println(directory + "/" + username + ".txt");
+
+		if(file.isFile()) {
+			System.out.println("file exists\n");
+			password = null;
+			return true;
+		}
+
+		return false;
+
 	}
 }

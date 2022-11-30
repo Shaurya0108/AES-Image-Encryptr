@@ -5,22 +5,30 @@
 
 package userInt.mainMenu;
 
+import javax.crypto.SecretKey;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.util.AbstractMap;
 
 public class MainUI extends JFrame{
+
 	private static final long serialVersionUID = 1L;
 	private static MainMenu mainMenu;
 	private LoginWelcomePage login;
-	private static EncryptFile encryptFile = new EncryptFile("Encrypt File");
-	private static DecryptFile decryptFile = new DecryptFile("Decrypt File");
+	public AbstractMap.SimpleEntry<String, SecretKey> keyPair;
+	private static EncryptFile encryptFile;
+	private static DecryptFile decryptFile;
+	private static KeyManager keyManager;
 	private static ViewFile viewFile = new ViewFile("View Encrypted Files");
-	
+
 	//This will run first before the main program. 
 	public MainUI () {
 		login = new LoginWelcomePage(this, true);
 		login.setVisible(true);
+		encryptFile = new EncryptFile("Encrypt File", this);
+		decryptFile = new DecryptFile("Decrypt File", this);
+		keyManager = new KeyManager(this);
 	}
 
 	public static void main (String [] args) {
@@ -32,7 +40,7 @@ public class MainUI extends JFrame{
 				 JFrame start = new MainUI();
 				 start.setTitle("SecureCrypt File Encrypter 0.1.3");
 				 start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				 start.setSize(400,400);
+				 start.setSize(400,600);
 				 
 				 mainMenu = new MainMenu();
 				 start.add(mainMenu);
@@ -67,8 +75,22 @@ public class MainUI extends JFrame{
 						
 					}
 				});
+				mainMenu.keyMan.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						keyManager.setVisible(true);
+					}
+				});
 			}
 		});
+	}
+
+	public void updateKeyPair(AbstractMap.SimpleEntry<String, SecretKey> keyPair) {
+		this.keyPair = keyPair;
+	}
+
+	public SecretKey getSecretKey() {
+		return keyPair.getValue();
 	}
 
 	public boolean loginExists() {

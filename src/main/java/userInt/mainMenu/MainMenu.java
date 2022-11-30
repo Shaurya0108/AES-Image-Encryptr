@@ -7,7 +7,9 @@ package userInt.mainMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.AbstractMap;
 
+import javax.crypto.SecretKey;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JMenu;
@@ -20,18 +22,18 @@ import javax.swing.KeyStroke;
 public class MainMenu extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	public JButton encOpt, decOpt, viewFile; //Three main options: encrypt, decrypt and view
+	public JButton encOpt, decOpt, viewFile, keyMan; //Three main options: encrypt, decrypt and view
 	public JMenuBar optionsBar;
 	JMenu accountOptions, accountSub, encryptOptions, encryptSub;
 	public JMenuItem createAcc, manAcc, changeAcc, saveOption;
 	public JRadioButtonMenuItem save, replace;
-	
-	
+
 	public MainMenu() {
 		encOpt = new JButton("Encrypt File");
 		decOpt = new JButton("Decrypt File");
 		viewFile = new JButton("View Encrypted Files");
-		
+		keyMan = new JButton("manage keys");
+
 		optionsBar = new JMenuBar();						//Main menu bar
 		
 		//Account options
@@ -97,14 +99,15 @@ public class MainMenu extends JPanel{
 		
 		setLayout(null);
 		//Custom placement of buttons
-		encOpt.setBounds(75, 60, 220, 50);
-		decOpt.setBounds(75, 158, 220, 50);
-		viewFile.setBounds(75, 255, 220, 50);
+		encOpt.setBounds(75, 75, 220, 50);
+		decOpt.setBounds(75, 125, 220, 50);
+		viewFile.setBounds(75, 175, 220, 50);
+		keyMan.setBounds(75, 245,220, 50);
 		
 		add(encOpt);
 		add(decOpt);
 		add(viewFile);
+		add(keyMan);
 	}
-
 
 }

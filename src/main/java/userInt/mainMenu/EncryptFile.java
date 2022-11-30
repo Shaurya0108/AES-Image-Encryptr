@@ -23,45 +23,45 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.sun.tools.javac.Main;
 import encryption.Encryption;
 
 public class EncryptFile extends JFrame implements ActionListener {
+
+	private static final byte[] IV_DATA = {
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+	};
+
 	private static final long serialVersionUID = 1L;
 	private static final String CIPHER = "AES/CBC/PKCS5Padding";
 	public EncryptPanel encryptPanel;
 	File file;
 	String name;
 	long size;
+	MainUI mainUI;
 	
-	public EncryptFile() {
-		setTitle("Encrypt File");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		pack();
-	}
-	
-	public EncryptFile(String title) {
+	public EncryptFile(String title, MainUI mainUI) {
+		this.mainUI = mainUI;
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(500,300);
 		setLocationRelativeTo(null);				//Opens in the center of screen
 		setVisible(false);							//Will open when selected from main menu
 		
-		encryptPanel = new EncryptPanel();
+		encryptPanel = new EncryptPanel(mainUI);
 		add(encryptPanel);
 		
 		encryptPanel.cancel.addActionListener(this);
 		encryptPanel.selectFile.addActionListener(this);		//Opens select file dialog using JFileChooser
 		encryptPanel.encrypt.addActionListener(this);
-
-
 	}
-	
-	public static void main(String[] args) {
-		new EncryptFile("Encrypt File");
-	}
-	
+
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -98,6 +98,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 			}
 						
 		}
+
 		if(e.getSource() == encryptPanel.encrypt) {
 			Encryption encryptFile = null;
 			
@@ -105,20 +106,9 @@ public class EncryptFile extends JFrame implements ActionListener {
 
 			File tempDir = new File(abosPath);
 			File encryptedFile = new File(tempDir.toPath().toString() + ".aes");
-			
-			
-			SecretKey key = null;
-			try {
-				key = getKey(128);
-				Test testKey = new Test();
-				testKey.testKey = key;
-			} catch (NoSuchAlgorithmException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			IvParameterSpec iv = generateIv();
-			Test testIv = new Test();
-			testIv.testIv = iv;
+
+			SecretKey key = mainUI.getSecretKey();
+			IvParameterSpec iv = new IvParameterSpec(IV_DATA);
 				
 			if(file == null) {
 				System.out.println("No files found");

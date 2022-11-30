@@ -72,34 +72,34 @@ public class Tests {
         Assertions.assertTrue(mainMenu.viewFile.getActionListeners() != null);
     }
 
-    @Test
-    public void EncryptFileHasCancel() {
-        EncryptPanel encryptPanel = new EncryptPanel();
-        Assertions.assertTrue(encryptPanel.cancel != null);
-        Assertions.assertTrue(encryptPanel.cancel.getActionListeners() != null);
-    }
+//    @Test
+//    public void EncryptFileHasCancel() {
+//        EncryptPanel encryptPanel = new EncryptPanel();
+//        Assertions.assertTrue(encryptPanel.cancel != null);
+//        Assertions.assertTrue(encryptPanel.cancel.getActionListeners() != null);
+//    }
 
-    @Test
-    public void EncryptFileHasSelectFile() {
-        EncryptPanel encryptPanel = new EncryptPanel();
-        Assertions.assertTrue(encryptPanel.selectFile != null);
-        Assertions.assertTrue(encryptPanel.selectFile.getActionListeners() != null);
-    }
-
-    @Test
-    public void EncryptFileHasEncrypt() {
-        EncryptPanel encryptPanel = new EncryptPanel();
-        Assertions.assertTrue(encryptPanel.encrypt != null);
-        Assertions.assertTrue(encryptPanel.encrypt.getActionListeners() != null);
-    }
-    @Test
-    public void EncryptFileHasSelectList() {
-        EncryptFile encryptFile = new EncryptFile("Encrypt File");
-        Assertions.assertTrue(encryptFile.encryptPanel != null);
-        Assertions.assertTrue(encryptFile.encryptPanel.fileScroll != null);
-        encryptFile.encryptPanel.addToList("file.jpg", 0);
-        Assertions.assertTrue(encryptFile.encryptPanel.filesInList() != 0);
-    }
+//    @Test
+//    public void EncryptFileHasSelectFile() {
+//        EncryptPanel encryptPanel = new EncryptPanel();
+//        Assertions.assertTrue(encryptPanel.selectFile != null);
+//        Assertions.assertTrue(encryptPanel.selectFile.getActionListeners() != null);
+//    }
+//
+//    @Test
+//    public void EncryptFileHasEncrypt() {
+//        EncryptPanel encryptPanel = new EncryptPanel();
+//        Assertions.assertTrue(encryptPanel.encrypt != null);
+//        Assertions.assertTrue(encryptPanel.encrypt.getActionListeners() != null);
+//    }
+//    @Test
+//    public void EncryptFileHasSelectList() {
+//        EncryptFile encryptFile = new EncryptFile("Encrypt File");
+//        Assertions.assertTrue(encryptFile.encryptPanel != null);
+//        Assertions.assertTrue(encryptFile.encryptPanel.fileScroll != null);
+//        encryptFile.encryptPanel.addToList("file.jpg", 0);
+//        Assertions.assertTrue(encryptFile.encryptPanel.filesInList() != 0);
+//    }
 
     @Test
     public void DecryptFileHasCancel() {
@@ -108,14 +108,14 @@ public class Tests {
         Assertions.assertTrue(decryptPanel.cancel.getActionListeners() != null);
     }
 
-    @Test
-    public void DecryptFileHasSelectList() {
-        DecryptFile decryptFile = new DecryptFile("Encrypt File");
-        Assertions.assertTrue(decryptFile.decryptPanel != null);
-        Assertions.assertTrue(decryptFile.decryptPanel.fileScroll != null);
-        decryptFile.decryptPanel.addToList("file.jpg", 0);
-        Assertions.assertTrue(decryptFile.decryptPanel.filesInList() != 0);
-    }
+//    @Test
+//    public void DecryptFileHasSelectList() {
+//        DecryptFile decryptFile = new DecryptFile("Encrypt File");
+//        Assertions.assertTrue(decryptFile.decryptPanel != null);
+//        Assertions.assertTrue(decryptFile.decryptPanel.fileScroll != null);
+//        decryptFile.decryptPanel.addToList("file.jpg", 0);
+//        Assertions.assertTrue(decryptFile.decryptPanel.filesInList() != 0);
+//    }
 
     @Test
     public void DecryptFileHasSelectFile() {

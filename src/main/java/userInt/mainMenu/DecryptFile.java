@@ -12,6 +12,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -25,28 +27,28 @@ import encryption.Encryption;
 * @author Alan
 */
 public class DecryptFile extends JFrame implements ActionListener{
+
+	private static final byte[] IV_DATA = {
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+			(byte) 0x00, (byte) 0x01, (byte) 0x02, (byte) 0x03,
+	};
+
 	private static final long serialVersionUID = 1L;
 	private static final String CIPHER = "AES/CBC/PKCS5Padding";
 	public DecryptPanel decryptPanel;
-	
+	MainUI mainUI;
 	File file;
 	String name;
 	long size;
-		
-	/**Default constructor for opening the "Decrypt File" menu.
-	 * 
-	 */
-	public DecryptFile() {
-		setTitle("Decrypt File");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		pack();
-	}
 	
 	/**Constructor for the "Decrypt File" menu.
 	 * Uses JFileChooser for opening and reading files
 	 * @param title is the name of the window
 	 */
-	public DecryptFile(String title) {
+	public DecryptFile(String title, MainUI mainUI) {
+		this.mainUI = mainUI;
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(500,300);
@@ -63,7 +65,6 @@ public class DecryptFile extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		new DecryptFile("Decrypt File");
 	}
 	
 	@SuppressWarnings("static-access")
@@ -107,15 +108,16 @@ public class DecryptFile extends JFrame implements ActionListener{
 
 			File tempDir = new File(abosPath);
 			File decryptedFile = new File(tempDir.toPath().toString().replace(".aes", ""));
-						
-			test = new Test();
+
+			SecretKey key = mainUI.getSecretKey();
+			IvParameterSpec iv = new IvParameterSpec(IV_DATA);
 
 			if(file == null) {
 				System.out.println("No files found");
 			}
 			
 			try {
-				decryptFile.decryptFile(CIPHER, test.getKey(), test.getIv(), file, decryptedFile);
+				decryptFile.decryptFile(CIPHER, key, iv, file, decryptedFile);
 			} catch (InvalidKeyException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
