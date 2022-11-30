@@ -63,11 +63,11 @@ public class KeyPanel extends JPanel {
 
         setLayout(null);
 
+        keyField.setBounds(25,25,440,25);
+        add(keyField);
+
         fileScroll.setBounds(25, 50, 440,100);
         add(fileScroll);
-
-        keyField.setBounds(0,0,100,10);
-        add(keyField);
 
         cancel.setBounds(25, 200, 100, 25);
         add(cancel);

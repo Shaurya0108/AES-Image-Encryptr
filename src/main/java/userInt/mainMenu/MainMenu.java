@@ -22,7 +22,8 @@ import javax.swing.KeyStroke;
 public class MainMenu extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
-	public JButton encOpt, decOpt, viewFile, keyMan; //Three main options: encrypt, decrypt and view
+	public JButton encOpt, decOpt, keyMan; //Three main options: encrypt, decrypt and view
+	//public JButton viewFile;
 	public JMenuBar optionsBar;
 	JMenu accountOptions, accountSub, encryptOptions, encryptSub;
 	public JMenuItem createAcc, manAcc, changeAcc, saveOption;
@@ -31,7 +32,7 @@ public class MainMenu extends JPanel{
 	public MainMenu() {
 		encOpt = new JButton("Encrypt File");
 		decOpt = new JButton("Decrypt File");
-		viewFile = new JButton("View Encrypted Files");
+		//viewFile = new JButton("View Encrypted Files");
 		keyMan = new JButton("manage keys");
 
 		optionsBar = new JMenuBar();						//Main menu bar
@@ -99,14 +100,14 @@ public class MainMenu extends JPanel{
 		
 		setLayout(null);
 		//Custom placement of buttons
-		encOpt.setBounds(75, 75, 220, 50);
-		decOpt.setBounds(75, 125, 220, 50);
-		viewFile.setBounds(75, 175, 220, 50);
-		keyMan.setBounds(75, 245,220, 50);
+		encOpt.setBounds(75, 50, 220, 50);
+		decOpt.setBounds(75, 150, 220, 50);
+		//viewFile.setBounds(75, 175, 220, 50);
+		keyMan.setBounds(75, 250,220, 50);
 		
 		add(encOpt);
 		add(decOpt);
-		add(viewFile);
+		//add(viewFile);
 		add(keyMan);
 	}
 

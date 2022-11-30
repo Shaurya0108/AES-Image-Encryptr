@@ -7,7 +7,6 @@ package userInt.mainMenu;
 
 import javax.crypto.SecretKey;
 import javax.swing.*;
-
 import java.awt.event.*;
 import java.util.AbstractMap;
 
@@ -37,50 +36,51 @@ public class MainUI extends JFrame{
 			
 			@Override
 			public void run() {
-				 JFrame start = new MainUI();
-				 start.setTitle("SecureCrypt File Encrypter 0.1.3");
-				 start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				 start.setSize(400,600);
-				 
-				 mainMenu = new MainMenu();
-				 start.add(mainMenu);
-				 start.setJMenuBar(mainMenu.optionsBar);		//Sets a menu bar for extra options
-				 start.setLocationRelativeTo(null);
-				 start.setVisible(true);
+				JFrame start = new MainUI();
+				start.setTitle("SecureCrypt File Encrypter 0.1.3");
+				start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				start.setSize(400,400);
+
+				mainMenu = new MainMenu();
+				start.add(mainMenu);
+				start.setJMenuBar(mainMenu.optionsBar);		//Sets a menu bar for extra options
+				start.setLocationRelativeTo(null);
+				start.setVisible(true);
 					
 				//Action listener for button to go to encrypt menu
 				mainMenu.encOpt.addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						encryptFile.setVisible(true);
-						
 					}
 				});
+
 				//Action listener for button to go to decrypt menu
 				mainMenu.decOpt.addActionListener(new ActionListener() {
-					
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						decryptFile.setVisible(true);
 						
 					}
 				});
+
 				//Action listener for button to go to view file menu
-				mainMenu.viewFile.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						viewFile.setVisible(true);
-						
-					}
-				});
+//				mainMenu.viewFile.addActionListener(new ActionListener() {
+//
+//					@Override
+//					public void actionPerformed(ActionEvent e) {
+//						viewFile.setVisible(true);
+//
+//					}
+//				});
+
 				mainMenu.keyMan.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						keyManager.setVisible(true);
 					}
 				});
+
 			}
 		});
 	}
