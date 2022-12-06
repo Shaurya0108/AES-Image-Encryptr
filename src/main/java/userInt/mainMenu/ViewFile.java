@@ -38,10 +38,6 @@ public class ViewFile extends JFrame implements ActionListener{
 		
 	}
 
-	public static void main(String[] args) {
-		new ViewFile("View Encrypted Files");
-	}
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == viewPanel.cancel) {

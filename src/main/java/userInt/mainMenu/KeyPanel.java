@@ -51,12 +51,9 @@ public class KeyPanel extends JPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (e.getValueIsAdjusting() == false) {
-                    if (files.getSelectedIndex() == -1) {
-                        mainUI.updateKeyPair(new AbstractMap.SimpleEntry<>("", null));
-                    } else {
+                    if(files.getSelectedIndex() >= 0) {
                         mainUI.updateKeyPair((AbstractMap.SimpleEntry<String, SecretKey>) files.getSelectedValue());
                     }
-                    System.out.println(mainUI.getSecretKey());
                 }
             }
         });

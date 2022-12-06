@@ -108,6 +108,7 @@ public class EncryptFile extends JFrame implements ActionListener {
 			File encryptedFile = new File(tempDir.toPath().toString() + ".aes");
 
 			SecretKey key = mainUI.getSecretKey();
+
 			IvParameterSpec iv = new IvParameterSpec(IV_DATA);
 				
 			if(file == null) {

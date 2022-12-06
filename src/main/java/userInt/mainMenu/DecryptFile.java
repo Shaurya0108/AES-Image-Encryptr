@@ -63,10 +63,7 @@ public class DecryptFile extends JFrame implements ActionListener{
 		decryptPanel.selectFile.addActionListener(this);
 		decryptPanel.decrypt.addActionListener(this);
 	}
-	
-	public static void main(String[] args) {
-	}
-	
+
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
