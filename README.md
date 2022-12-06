@@ -13,7 +13,13 @@ main or testing and run.
 
 #### Usage
 
-Main is the regular implementation of the program. Enter credentials, login, create and select a key; then you are ready to encrypt / decrypt. The selected key can be changed in the manage key menu.  
+Open the project using any IDE or code editor that can execute Java
+
+Open MainUI.java
+
+Run MainUI.java
+
+Main is the regular implementation of the program. Enter credentials, login, create and select a key; then you are ready to encrypt / decrypt. The selected key can be changed in the manage key menu. 
 
 #### Testing
 Selecting testing will use the JUnit framework to monitor the behavior of the program.
