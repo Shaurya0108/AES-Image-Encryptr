@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85da0558-b768-44b6-8038-022cc44e997a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/DecryptFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/DecryptFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/EncryptFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/KeyPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/KeyPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/ViewFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/userInt/mainMenu/ViewFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

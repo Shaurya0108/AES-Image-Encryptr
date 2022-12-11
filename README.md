@@ -8,7 +8,10 @@
 
 #### This project uses an AES-GCM algorithm to encrypt/decrypt files selected by the user. The program is written in Java.
 
-to use the program import into a Java IDE (InteliJ is recommended). Select the desired build version;
+A compiled version of the program is available in the out folder (see AES-Image-Encryptr.jar)
+If the program does not launch there is a problem with the MANIFEST.MF in the jar
+to fix add "Main-Class: userInt.mainMenu.MainUI" in the META-INF/MANIFEST.MF
+You can also import the program into a Java IDE (InteliJ is recommended). Select the desired build version;
 main or testing and run.
 
 #### Usage
